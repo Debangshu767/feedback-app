@@ -20,20 +20,20 @@ function FeedbackForm() {
         setRating(feedbackEdit.item.rating)
     }, [feedbackEdit])
 
-    const handleTextChange = (e) =>{
-        if(text === ''){
+    const handleTextChange = ({target : {value}}) =>{
+        if (value === '') {
             setBtnDisabled(true)
             setMessage(null)
-        
-        } else if(text!== '' && text.trim().length <= 10){
-            setMessage('Text must be atlesat 10 characters')
+            
+          } else if (value.trim().length < 10) { 
+            setMessage('Text must be at least 10 characters')
             setBtnDisabled(true)
-        } else {
+          } else {
             setMessage(null)
             setBtnDisabled(false)
+          }
+          setText(value)
         }
-        setText(e.target.value)
-    }
 
     const handleSubmit = (e) =>{
         e.preventDefault()
